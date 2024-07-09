@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"unsafe"
+
+	"golang.org/x/sys/unix"
 )
 
 func clen(n []byte) int {
