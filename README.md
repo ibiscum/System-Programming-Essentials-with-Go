@@ -1,4 +1,5 @@
-# System Programming Essentials with Go	
+# System Programming Essentials with Go
+[![CodeQL](https://github.com/ibiscum/System-Programming-Essentials-with-Go/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/ibiscum/System-Programming-Essentials-with-Go/actions/workflows/github-code-scanning/codeql)
 
 <a href="https://www.packtpub.com/product/system-programming-essentials-with-go/9781837634132"><img src="https://content.packt.com/_/image/original/B21662/cover_image_large.jpg" alt="no-image" height="256px" align="right"></a>
 
@@ -7,7 +8,7 @@ This is the code repository for [System Programming Essentials with Go](https://
 **System calls, networking, efficiency, and security practices with practical projects in Golang**
 
 ## What is this book about?
-From file operations to process management and network programming, this hands-on guide equips software engineers with the skills to build efficient, reliable applications and optimize their performance.	
+From file operations to process management and network programming, this hands-on guide equips software engineers with the skills to build efficient, reliable applications and optimize their performance.
 
 This book covers the following exciting features:
 * Understand the fundamentals of system programming using Go
@@ -51,4 +52,3 @@ With the following software and hardware list you can run all code files present
 ## Get to Know the Author
 **Alex Rios**
 is an established Brazilian software engineer with a 15-year track record of success in large-scale solution development. Alex specializes in Go and creates high-throughput systems that address diverse needs across fintech, telecom, and gaming industries. As a Staff Engineer at Stone Co., Alex applies his expertise using unconventional system designs, ensuring top-notch delivery. Also, Alex uses his expertise to evaluate books and publications as a technical reviewer. Alex is an enthusiastic community member, actively participating in its growth and development as Curitiba's Go meetup organizer. His dedication is evident in his regular presence as a speaker at major national tech events like GopherCon Brazil.
-
