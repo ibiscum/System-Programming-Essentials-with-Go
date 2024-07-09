@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/fs"
+	"log"
 	"os"
 	"path/filepath"
 	"runtime/pprof"
@@ -36,7 +37,7 @@ func scanDirectory(dir string) (map[string]FileInfo, error) {
 }
 
 func compareAndEmitEvents(oldState, newState map[string]FileInfo) {
-	for path, _ /* newInfo*/ := range newState {
+	for path /* newInfo*/ := range newState {
 		// ...
 		go sendAlert(fmt.Sprintf("File created: %s", path))
 		// ...
@@ -59,9 +60,13 @@ func main() {
 	f, err := os.Create("cpuprofile.out")
 	if err != nil {
 		// Handle error
+		log.Fatal(err)
 	}
 	defer f.Close()
-	pprof.StartCPUProfile(f)
+	err = pprof.StartCPUProfile(f)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer pprof.StopCPUProfile()
 
 	currentState, err := scanDirectory(dirToMonitor)

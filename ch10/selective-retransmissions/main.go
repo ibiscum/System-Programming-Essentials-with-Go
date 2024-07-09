@@ -20,7 +20,7 @@ type Packet struct {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	//rand.Seed(time.Now().UnixNano())
 
 	addr, err := net.ResolveUDPAddr("udp", ":5000")
 	if err != nil {

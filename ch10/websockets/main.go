@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	http.ListenAndServe(":8080", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	err := http.ListenAndServe(":8080", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		conn, _, _, err := ws.UpgradeHTTP(r, w)
 		if err != nil {
 			// Handle the error of WebSocket upgrade failure.
@@ -43,4 +43,8 @@ func main() {
 			conn.Close()
 		}()
 	}))
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }

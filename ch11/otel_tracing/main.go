@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"net/http"
 
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
@@ -19,12 +20,21 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 	defer span.End()
 
 	zap.L().Info("Handling request")
-	w.Write([]byte("Hello, World!"))
+	_, err := w.Write([]byte("Hello, World!"))
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func main() {
 	logger, _ := zap.NewProduction()
-	defer logger.Sync()
+	defer func() {
+		err := logger.Sync()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
 	sugar := logger.Sugar()
 
 	ctx := context.Background()

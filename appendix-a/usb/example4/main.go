@@ -10,7 +10,7 @@ import (
 func main() {
 	conn, err := dbus.SystemBus()
 	if err != nil {
-		fmt.Sprintf("Failed to connect to system bus: %v\n", err)
+		fmt.Printf("Failed to connect to system bus: %v\n", err)
 		return
 	}
 	defer conn.Close()
@@ -22,7 +22,7 @@ func main() {
 	matchStr := "type='signal',sender='org.freedesktop.UDisks2',interface='org.freedesktop.DBus.ObjectManager',path='/org/freedesktop/UDisks2'"
 	call := conn.BusObject().Call("org.freedesktop.DBus.AddMatch", 0, matchStr)
 	if call.Err != nil {
-		fmt.Sprintf("Failed to add match: %v\n", call.Err)
+		fmt.Printf("Failed to add match: %v\n", call.Err)
 		return
 	}
 
@@ -40,7 +40,7 @@ func main() {
 				}
 
 				mountPoints := deviceProps.Body[0].(dbus.Variant)
-				fmt.Println(fmt.Sprintf("%s", mountPoints.Value()))
+				fmt.Printf("%s", mountPoints.Value())
 			}
 		}
 	}

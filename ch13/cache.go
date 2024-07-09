@@ -88,14 +88,14 @@ func (c *Cache) evictLRU() {
 }
 
 // startEvictionTicker starts a background goroutine that periodically evicts expired items
-func (c *Cache) startEvictionTicker(d time.Duration) {
-	ticker := time.NewTicker(d)
-	go func() {
-		for range ticker.C {
-			c.evictExpiredItems()
-		}
-	}()
-}
+// func (c *Cache) startEvictionTicker(d time.Duration) {
+// 	ticker := time.NewTicker(d)
+// 	go func() {
+// 		for range ticker.C {
+// 			c.evictExpiredItems()
+// 		}
+// 	}()
+// }
 
 // evictExpiredItems removes all expired items from the cache
 func (c *Cache) evictExpiredItems() {

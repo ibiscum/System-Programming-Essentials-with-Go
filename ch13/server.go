@@ -162,5 +162,8 @@ func (cs *CacheServer) forwardRequest(targetNode Node, r *http.Request) {
 		log.Printf("Failed to forward request to node %s: %v", targetNode.Addr, err)
 		return
 	}
-	io.ReadAll(resp.Body)
+	_, err = io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

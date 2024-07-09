@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/godbus/dbus/v5"
 )
@@ -9,7 +10,8 @@ import (
 func main() {
 	conn, err := dbus.ConnectSessionBus()
 	if err != nil {
-		fmt.Errorf("failed to connect to session bus: %v", err)
+		fmt.Fprintln(os.Stderr, "failed to connect to session bus:", err)
+		os.Exit(1)
 	}
 	defer conn.Close()
 
@@ -26,7 +28,7 @@ func main() {
 		appIcon, summary, body, actions,
 		hints, expireTimeout)
 	if call.Err != nil {
-		fmt.Sprintf("Error: %v", call.Err)
+		fmt.Printf("Error: %v", call.Err)
 		return
 	}
 }

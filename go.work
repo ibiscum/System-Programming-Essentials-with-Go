@@ -1,8 +1,0 @@
-go 1.22.1
-
-use (
-	./ch01/tooling/test
-	./ch02/changing-shared-state/example_4
-	./ch02/changing-shared-state/example_5
-	./ch03
-)

@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/gobwas/ws"
@@ -39,5 +40,8 @@ func main() {
 
 	// Keep the client running until the user decides to exit
 	fmt.Println("Press 'Enter' to exit...")
-	bufio.NewReader(os.Stdin).ReadBytes('\n')
+	_, err = bufio.NewReader(os.Stdin).ReadBytes('\n')
+	if err != nil {
+		log.Fatal(err)
+	}
 }

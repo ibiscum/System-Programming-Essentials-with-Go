@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -9,7 +10,10 @@ func main() {
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/resource", resourceHandler)
 	fmt.Println("Server starting on port 8080...")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
