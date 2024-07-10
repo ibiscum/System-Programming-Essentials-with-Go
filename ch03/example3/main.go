@@ -1,7 +1,14 @@
 package main
 
-import "golang.org/x/sys/unix"
+import (
+	"log"
+
+	"golang.org/x/sys/unix"
+)
 
 func main() {
-	unix.Write(1, []byte("Hello, World!"))
+	_, err := unix.Write(1, []byte("Hello, World!"))
+	if err != nil {
+		log.Fatal(err)
+	}
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -46,7 +47,7 @@ func NewDefaultNotification(deviceName string) Notification {
 func main() {
 	conn, err := dbus.SystemBus()
 	if err != nil {
-		fmt.Sprintf("Failed to connect to system bus: %v\n", err)
+		log.Printf("Failed to connect to system bus: %v\n", err)
 		return
 	}
 	defer conn.Close()
@@ -58,7 +59,7 @@ func main() {
 	matchStr := "type='signal',sender='org.freedesktop.UDisks2',interface='org.freedesktop.DBus.ObjectManager',path='/org/freedesktop/UDisks2'"
 	call := conn.BusObject().Call("org.freedesktop.DBus.AddMatch", 0, matchStr)
 	if call.Err != nil {
-		fmt.Sprintf("Failed to add match: %v\n", call.Err)
+		log.Printf("Failed to add match: %v\n", call.Err)
 		return
 	}
 	notificationsCh := make(chan string)
@@ -192,7 +193,7 @@ func retry(maxRetries int, interval time.Duration, deviceName string, conn *dbus
 func (n *Notification) send() error {
 	conn, err := dbus.ConnectSessionBus()
 	if err != nil {
-		fmt.Errorf("failed to connect to session bus: %v", err)
+		log.Printf("failed to connect to session bus: %v", err)
 	}
 	defer conn.Close()
 

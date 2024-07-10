@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"sync"
@@ -61,7 +62,10 @@ func broadcastMessage(message string) {
 	mutex.Lock()
 	defer mutex.Unlock()
 	for _, client := range clients {
-		client.Write([]byte(message + "\n"))
+		_, err := client.Write([]byte(message + "\n"))
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 

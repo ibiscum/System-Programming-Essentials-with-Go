@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"sync"
@@ -35,7 +36,10 @@ func main() {
 	fmt.Println("Enter message:")
 	for scanner.Scan() {
 		message := scanner.Text()
-		conn.Write([]byte(message))
+		_, err := conn.Write([]byte(message))
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	wg.Wait()

@@ -1,7 +1,9 @@
+//go:build ignore
+
 package main
 
 import (
-	"arena" 
+	"arena"
 	"fmt"
 )
 

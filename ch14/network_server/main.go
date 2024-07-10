@@ -2,29 +2,36 @@ package main
 
 import (
 	"io"
+	"log"
 	"net"
 	"sync"
 )
 
 var bufferPool = sync.Pool{
 	New: func() interface{} {
-		return make([]byte, 1024)
+		byteP := make([]byte, 1024)
+		return &byteP
 	},
 }
 
 func handleConnection(conn net.Conn) {
-	buf := bufferPool.Get().([]byte)
-	defer bufferPool.Put(buf)
+	buf := bufferPool.Get().(*[]byte)
+	defer bufferPool.Put(&buf)
 
 	for {
-		n, err := conn.Read(buf)
+		n, err := conn.Read(*buf)
 		if err != nil {
 			if err != io.EOF {
 				println("Error reading:", err.Error())
 			}
 			break
 		}
-		conn.Write(buf[:n])
+
+		tmp_buf := *buf
+		_, err = conn.Write(tmp_buf[:n])
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 	conn.Close()
 }
