@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	github.com/muka/go-bluetooth v0.0.0-20240701044517-04c4f09c514e
-	golang.org/x/sys v0.22.0
+	golang.org/x/sys v0.24.0
 )
 
 require github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
