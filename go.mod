@@ -9,7 +9,10 @@ require (
 	golang.org/x/sys v0.22.0
 )
 
-require github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+require (
+	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
@@ -42,7 +45,7 @@ require (
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/gobwas/ws v1.4.0
 	github.com/godbus/dbus/v5 v5.1.0
-	github.com/prometheus/client_golang v1.19.1
+	github.com/prometheus/client_golang v1.20.0
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.53.0
 	go.opentelemetry.io/otel v1.28.0
