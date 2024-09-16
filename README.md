@@ -1,5 +1,6 @@
 # System Programming Essentials with Go
 [![CodeQL](https://github.com/ibiscum/System-Programming-Essentials-with-Go/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/ibiscum/System-Programming-Essentials-with-Go/actions/workflows/github-code-scanning/codeql)
+[![lint](https://github.com/ibiscum/System-Programming-Essentials-with-Go/actions/workflows/lint.yml/badge.svg)](https://github.com/ibiscum/System-Programming-Essentials-with-Go/actions/workflows/lint.yml)
 
 <a href="https://www.packtpub.com/product/system-programming-essentials-with-go/9781837634132"><img src="https://content.packt.com/_/image/original/B21662/cover_image_large.jpg" alt="no-image" height="256px" align="right"></a>
 
