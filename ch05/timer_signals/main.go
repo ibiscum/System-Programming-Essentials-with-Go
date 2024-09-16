@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"unsafe"
 
 	"golang.org/x/sys/unix" // This package is used to interact with the Linux kernel, if you're on a different OS, you'll need to use a different package
@@ -14,6 +15,12 @@ func clen(n []byte) int {
 		}
 	}
 	return len(n)
+}
+
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func main() {
@@ -30,7 +37,10 @@ func main() {
 		fmt.Println("Error adding watch:", err)
 		return
 	}
-	defer unix.InotifyRmWatch(fd, uint32(watchDescriptor))
+	defer func() {
+		_, err := unix.InotifyRmWatch(fd, uint32(watchDescriptor))
+		checkError(err)
+	}()
 
 	const bufferSize = (unix.SizeofInotifyEvent + unix.NAME_MAX + 1)
 	buf := make([]byte, bufferSize)

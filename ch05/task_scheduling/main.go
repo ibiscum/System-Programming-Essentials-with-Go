@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -35,6 +36,12 @@ func (s *Scheduler) Schedule(job Job, delay time.Duration) {
 	}()
 }
 
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
 	scheduler := NewScheduler(10) // Buffer size of 10
 
@@ -48,5 +55,6 @@ func main() {
 
 	// Wait for input to exit
 	fmt.Println("Scheduler started. Press Enter to exit.")
-	fmt.Scanln()
+	_, err := fmt.Scanln()
+	checkError(err)
 }

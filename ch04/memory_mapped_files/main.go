@@ -2,9 +2,16 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"syscall"
 )
+
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
 func main() {
 	filePath := "example.txt"
@@ -27,7 +34,12 @@ func main() {
 		fmt.Printf("Failed to mmap file: %v\n", err)
 		return
 	}
-	defer syscall.Munmap(data)
+
+	defer func() {
+		err := syscall.Munmap(data)
+		checkError(err)
+
+	}()
 
 	fmt.Printf("Initial content: %s\n", string(data))
 	newContent := []byte("Hello, mmap!")

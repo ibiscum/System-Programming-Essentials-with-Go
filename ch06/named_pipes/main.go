@@ -3,11 +3,18 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"sync"
 
 	"golang.org/x/sys/unix"
 )
+
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
 func main() {
 	mailboxPath := "/tmp/task_mailbox"
@@ -31,15 +38,19 @@ func main() {
 
 	go func() {
 		defer wg.Done()
-		ReadTask(mailbox)
+		err := ReadTask(mailbox)
+		checkError(err)
 	}()
 
 	go func() {
 		defer wg.Done()
 		for i := 0; i < 10; i++ {
-			SendTask(mailbox, fmt.Sprintf("Task %d\n", i))
+			err := SendTask(mailbox, fmt.Sprintf("Task %d\n", i))
+			checkError(err)
 		}
-		SendTask(mailbox, "EOD\n")
+		err := SendTask(mailbox, "EOD\n")
+		checkError(err)
+
 		fmt.Println("All tasks sent.")
 	}()
 

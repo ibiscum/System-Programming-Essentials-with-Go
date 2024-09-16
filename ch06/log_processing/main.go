@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"io"
+	"log"
 	"os"
 	"strings"
 	"syscall"
@@ -14,8 +15,15 @@ func filterLogs(reader io.Reader, writer io.Writer) {
 	for scanner.Scan() {
 		logEntry := scanner.Text()
 		if strings.Contains(logEntry, "ERROR") {
-			writer.Write([]byte(logEntry + "\n"))
+			_, err := writer.Write([]byte(logEntry + "\n"))
+			checkError(err)
 		}
+	}
+}
+
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
 	}
 }
 
@@ -37,14 +45,16 @@ func main() {
 
 	go func() {
 		writer, err := os.OpenFile(pipePath, os.O_WRONLY, os.ModeNamedPipe)
-		if err != nil {
-			panic(err)
-		}
+		checkError(err)
 		defer writer.Close()
 
 		for {
-			writer.WriteString("INFO: All systems operational\n")
-			writer.WriteString("ERROR: An error occurred\n")
+			_, err = writer.WriteString("INFO: All systems operational\n")
+			checkError(err)
+
+			_, err = writer.WriteString("ERROR: An error occurred\n")
+			checkError(err)
+
 			time.Sleep(1 * time.Second)
 		}
 	}()
