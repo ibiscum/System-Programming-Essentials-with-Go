@@ -45,7 +45,7 @@ require (
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/gobwas/ws v1.4.0
 	github.com/godbus/dbus/v5 v5.1.0
-	github.com/prometheus/client_golang v1.20.4
+	github.com/prometheus/client_golang v1.20.5
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.55.0
 	go.opentelemetry.io/otel v1.31.0
