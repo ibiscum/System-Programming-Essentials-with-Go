@@ -9,7 +9,7 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL Advanced"
+name: "codeql go"
 
 on:
   push:
@@ -17,17 +17,18 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '16 18 * * 0'
+    - cron: '40 13 * * 1'
 
 jobs:
   analyze:
-    name: Analyze (${{ matrix.language }})
+    name: Analyze Go
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
     #   - https://gh.io/supported-runners-and-hardware-resources
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: 360
     permissions:
       # required for all workflows
       security-events: write
@@ -45,8 +46,6 @@ jobs:
         include:
         - language: go
           build-mode: autobuild
-        - language: javascript-typescript
-          build-mode: none
         # CodeQL supports the following values keywords for 'language': 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
         # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
@@ -58,6 +57,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+          go-version: '1.23.2'
+          cache: false
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -78,15 +82,16 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        echo 'If you are using a "manual" build mode for one or more of the' \
-          'languages you are analyzing, replace this with the commands to build' \
-          'your code, for example:'
-        echo '  make bootstrap'
-        echo '  make release'
-        exit 1
+    # - if: matrix.build-mode == 'manual'
+    #  shell: bash
+      # run: |
+      #   echo 'If you are using a "manual" build mode for one or more of the' \
+      #     'languages you are analyzing, replace this with the commands to build' \
+      #     'your code, for example:'
+      #   echo '  make bootstrap'
+      #   echo '  make release'
+      #   exit 1
+    #  run: go build -v ./...
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
