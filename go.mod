@@ -6,7 +6,7 @@ require (
 	github.com/alexrios/timer/v2 v2.0.0
 	github.com/fsnotify/fsnotify v1.8.0
 	github.com/muka/go-bluetooth v0.0.0-20240701044517-04c4f09c514e
-	golang.org/x/sys v0.28.0
+	golang.org/x/sys v0.30.0
 )
 
 require (
@@ -34,8 +34,8 @@ require (
 	go.opentelemetry.io/otel/trace v1.35.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.4.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/net v0.33.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/net v0.36.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20241219192143-6b3ec007d9bb // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241219192143-6b3ec007d9bb // indirect
 	google.golang.org/grpc v1.69.2 // indirect
@@ -54,5 +54,5 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.33.0
 	go.uber.org/zap v1.27.0
 	golang.org/x/exp v0.0.0-20241217172543-b2144cdd0a67
-	golang.org/x/sync v0.10.0
+	golang.org/x/sync v0.11.0
 )
