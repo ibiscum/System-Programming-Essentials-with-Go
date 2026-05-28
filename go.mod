@@ -6,7 +6,7 @@ require (
 	github.com/alexrios/timer/v2 v2.0.0
 	github.com/fsnotify/fsnotify v1.10.1
 	github.com/muka/go-bluetooth v0.0.0-20240701044517-04c4f09c514e
-	golang.org/x/sys v0.42.0
+	golang.org/x/sys v0.45.0
 )
 
 require (
