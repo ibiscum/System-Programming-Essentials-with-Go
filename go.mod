@@ -1,6 +1,6 @@
 module github.com/ibiscum/System-Programming-Essentials-with-Go
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/alexrios/timer/v2 v2.0.0
@@ -53,5 +53,5 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.46.0
 	go.uber.org/zap v1.28.0
 	golang.org/x/exp v0.0.0-20241217172543-b2144cdd0a67
-	golang.org/x/sync v0.22.0
+	golang.org/x/sync v0.23.0
 )
