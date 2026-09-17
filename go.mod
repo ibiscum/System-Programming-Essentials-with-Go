@@ -1,12 +1,12 @@
 module github.com/ibiscum/System-Programming-Essentials-with-Go
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/alexrios/timer/v2 v2.0.0
 	github.com/fsnotify/fsnotify v1.10.1
 	github.com/muka/go-bluetooth v0.0.0-20240701044517-04c4f09c514e
-	golang.org/x/sys v0.47.0
+	golang.org/x/sys v0.48.0
 )
 
 require (
