@@ -23,7 +23,6 @@ require (
 	github.com/go-logr/logr v1.4.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gobwas/httphead v0.1.0 // indirect
-	github.com/gobwas/pool v0.2.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.30.0 // indirect
 	github.com/prometheus/client_model v0.6.3 // indirect
@@ -44,7 +43,7 @@ require (
 
 require (
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/gobwas/ws v1.4.0
+	github.com/gobwas/ws v1.5.0
 	github.com/godbus/dbus/v5 v5.2.2
 	github.com/prometheus/client_golang v1.25.0
 	github.com/sirupsen/logrus v1.9.3 // indirect
